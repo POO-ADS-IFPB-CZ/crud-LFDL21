@@ -1,5 +1,9 @@
-public class Aluno {
+import java.io.Serializable;
+import java.time.LocalDate;
 
+public class Aluno implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private int matricula;
     private String nome;
     private String curso;
