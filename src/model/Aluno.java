@@ -1,5 +1,7 @@
+package model;
+
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Objects;
 
 public class Aluno implements Serializable {
 
@@ -40,10 +42,23 @@ public class Aluno implements Serializable {
 
     @Override
     public String toString() {
-        return "Aluno{" +
+        return "model.Aluno{" +
                 "matricula=" + matricula +
                 ", nome='" + nome + '\'' +
                 ", curso='" + curso + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aluno aluno = (Aluno) o;
+        return matricula == aluno.matricula;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(matricula);
     }
 }
