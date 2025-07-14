@@ -29,5 +29,19 @@ public class AlunoDao {
         return new HashSet<>();
     }
 
+    public boolean salvar(Aluno aluno) throws IOException,
+            ClassNotFoundException {
+        Set<Aluno> alunos = getAlunos();
+        if(alunos.add(aluno)){
+            try(ObjectOutputStream out = new ObjectOutputStream(
+                    new FileOutputStream(arquivo)
+            )){
+                out.writeObject(alunos);
+            }
+            return true;
+        }
+        return false;
+    }
+
 
 }
