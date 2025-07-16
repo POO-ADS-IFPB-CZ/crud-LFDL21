@@ -1,4 +1,5 @@
 import dao.AlunoDao;
+import model.Aluno;
 
 import javax.crypto.spec.OAEPParameterSpec;
 import javax.swing.*;
@@ -28,6 +29,22 @@ public class Main {
             );
             if(escolha == null) System.exit(0);
             switch (escolha){
+                case "Buscar" ->{
+                    try{
+                        int matricula = Integer.parseInt(
+                                JOptionPane.showInputDialog(
+                                    null,
+                                    "Informe a matrícula"
+                                ));
+                        Aluno aluno = alunoDao.getAluno(matricula);
+                        JOptionPane.showMessageDialog(null,
+                                aluno);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 case "Listar" -> {
                     try {
                         JOptionPane.showMessageDialog(null,
