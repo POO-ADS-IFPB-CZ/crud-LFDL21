@@ -1,50 +1,49 @@
+import dao.AlunoDao;
+
 import javax.crypto.spec.OAEPParameterSpec;
 import javax.swing.*;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
 
-        ImageIcon icon = new ImageIcon("imgs/suco.png");
+        AlunoDao alunoDao;
+        try {
+            alunoDao = new AlunoDao();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icon = new ImageIcon("imgs/aluno.png");
         String opcoes[] = {"Salvar", "Buscar", "Listar",
-                "Atualizar", "Remover"};
-        JOptionPane.showOptionDialog(
-                null,
-                "O que deseja fazer?",
-                "CRUD Alunos",
-                JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                icon,
-                opcoes,
-                opcoes[0]);
+                "Atualizar", "Remover", "Sair"};
+        while(true){
+            String escolha = (String) JOptionPane.showInputDialog(null,
+                    "Escolha a opção",
+                    "CRUD Alunos",
+                    JOptionPane.QUESTION_MESSAGE,
+                    icon,
+                    opcoes,
+                    opcoes[0]
+            );
+            if(escolha == null) System.exit(0);
+            switch (escolha){
+                case "Listar" -> {
+                    try {
+                        JOptionPane.showMessageDialog(null,
+                                alunoDao.getAlunos(),
+                                "Listagem de alunos",
+                                JOptionPane.PLAIN_MESSAGE,
+                                icon);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                case "Sair" -> System.exit(0);
+            }
+        }
 
-//        int retorno = JOptionPane.showConfirmDialog(null,
-//                "Opções",
-//                "Escolha uma opção",
-//                JOptionPane.OK_CANCEL_OPTION,
-//                JOptionPane.QUESTION_MESSAGE,
-//                icon);
-//        switch (retorno){
-//            case JOptionPane.OK_OPTION ->System.out.println("Escolheu ok");
-//            case JOptionPane.CANCEL_OPTION -> System.out.println("Escolheu cancel");
-//            case JOptionPane.CLOSED_OPTION -> System.out.println("Fechou");
-//        }
-
-//        String valores[] = {"Opção 1", "Opção 2"};
-//        String selecao = (String) JOptionPane.showInputDialog(
-//                null,
-//                "Escolha a opção",
-//                "Entrada de dados",
-//                JOptionPane.QUESTION_MESSAGE,
-//                icon,
-//                valores,
-//                valores[0]);
-//        System.out.println(selecao);
-
-//        JOptionPane.showMessageDialog(null,
-//                "Hello World",
-//                "Mensagem do sistema",
-//                JOptionPane.ERROR_MESSAGE,
-//                icon
-//                );
     }
 }
