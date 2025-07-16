@@ -44,14 +44,27 @@ public class AlunoDao {
             ClassNotFoundException {
         Set<Aluno> alunos = getAlunos();
         if(alunos.add(aluno)){
-            try(ObjectOutputStream out = new ObjectOutputStream(
-                    new FileOutputStream(arquivo)
-            )){
-                out.writeObject(alunos);
-            }
+            atualizarArquivo(alunos);
             return true;
         }
         return false;
+    }
+
+    public boolean remover(Aluno aluno) throws IOException, ClassNotFoundException {
+        Set<Aluno> alunos = getAlunos();
+        if(alunos.remove(aluno)){
+            atualizarArquivo(alunos);
+            return true;
+        }
+        return false;
+    }
+
+    private void atualizarArquivo(Set<Aluno> alunos) throws IOException {
+        try(ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(arquivo)
+        )){
+            out.writeObject(alunos);
+        }
     }
 
 
