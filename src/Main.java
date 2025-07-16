@@ -8,8 +8,15 @@ public class Main {
 
         try {
             AlunoDao dao = new AlunoDao();
-//            dao.salvar(new Aluno(456,"Maria","ADS"));
+//            dao.salvar(new Aluno(142, "Pedro", "ADS"));
             System.out.println(dao.getAlunos());
+//            Aluno joao = dao.getAluno(123);
+//            joao.setNome("João da Silva");
+//            dao.atualizar(joao);
+//            System.out.println(dao.getAlunos());
+            dao.remover(new Aluno(142, "AAA", "AAA"));
+            System.out.println(dao.getAlunos());
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
