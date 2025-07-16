@@ -29,6 +29,17 @@ public class AlunoDao {
         return new HashSet<>();
     }
 
+    public Aluno getAluno(int matricula) throws IOException,
+            ClassNotFoundException {
+        Set<Aluno> alunos = getAlunos();
+        for(Aluno aluno: alunos){
+            if(aluno.getMatricula() == matricula){
+                return aluno;
+            }
+        }
+        return null;
+    }
+
     public boolean salvar(Aluno aluno) throws IOException,
             ClassNotFoundException {
         Set<Aluno> alunos = getAlunos();
