@@ -59,6 +59,16 @@ public class AlunoDao {
         return false;
     }
 
+    public boolean atualizar(Aluno aluno) throws IOException,
+            ClassNotFoundException {
+        Set<Aluno> alunos = getAlunos();
+        if(alunos.remove(aluno) && alunos.add(aluno)){
+            atualizarArquivo(alunos);
+            return true;
+        }
+        return false;
+    }
+
     private void atualizarArquivo(Set<Aluno> alunos) throws IOException {
         try(ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(arquivo)
