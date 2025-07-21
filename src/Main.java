@@ -7,6 +7,8 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
+        //TODO: Tratar exceções, finalizar as operações, desacoplar o código
+
         AlunoDao alunoDao;
         try {
             alunoDao = new AlunoDao();
