@@ -38,6 +38,25 @@ public class GenericDao <T> {
         return false;
     }
 
+    public boolean remover(T objeto) throws IOException, ClassNotFoundException {
+        Set<T> objetos = getAll();
+        if(objetos.remove(objeto)){
+            atualizarArquivo(objetos);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean atualizar(T objeto) throws IOException, ClassNotFoundException {
+        Set<T> objetos = getAll();
+        if(objetos.remove(objeto) && objetos.add(objeto)){
+            atualizarArquivo(objetos);
+            return true;
+        }
+        return false;
+    }
+
+
     private void atualizarArquivo(Set<T> objetos) throws IOException {
         try(ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(file)
