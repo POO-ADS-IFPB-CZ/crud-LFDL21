@@ -1,7 +1,5 @@
 package dao;
 
-import model.Aluno;
-
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
