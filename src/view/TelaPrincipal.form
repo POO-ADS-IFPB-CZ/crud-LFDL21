@@ -97,7 +97,7 @@
               <text value="Nome"/>
             </properties>
           </component>
-          <component id="78bb2" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="78bb2" class="javax.swing.JTextField" binding="campoNome">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -116,7 +116,7 @@
               <text value="Curso"/>
             </properties>
           </component>
-          <component id="a58ee" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+          <component id="a58ee" class="javax.swing.JComboBox" binding="comboCurso">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -130,7 +130,7 @@
               </model>
             </properties>
           </component>
-          <component id="9e765" class="javax.swing.JFormattedTextField" binding="formattedTextField1" custom-create="true" default-binding="true">
+          <component id="9e765" class="javax.swing.JFormattedTextField" binding="campoMatricula" custom-create="true">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
