@@ -1,7 +1,11 @@
 package view;
 
+import dao.GenericDao;
+import model.Aluno;
+
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import java.io.IOException;
 import java.text.ParseException;
 
 public class TelaPrincipal extends JFrame {
@@ -11,8 +15,19 @@ public class TelaPrincipal extends JFrame {
     private JTextField campoNome;
     private JComboBox comboCurso;
     private JFormattedTextField campoMatricula;
+    private GenericDao<Aluno> alunoDao;
 
     public TelaPrincipal() {
+
+        try {
+            alunoDao = new GenericDao<>("alunos.txt");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Falha ao abrir arquivo",
+                    "Mensagem de erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
         setContentPane(contentPane);
         setTitle("IFPB - Cajazeiras");
         setAlwaysOnTop(true);
@@ -24,11 +39,32 @@ public class TelaPrincipal extends JFrame {
         buttonCancel.addActionListener(e -> System.exit(0));
         buttonOK.addActionListener(e ->{
             if (validarFormulario()){
-                System.out.println("Cadastrar");
+                int matricula = Integer.parseInt(campoMatricula.getText());
+                String nome = campoNome.getText();
+                String curso = (String) comboCurso.getSelectedItem();
+                Aluno aluno = new Aluno(matricula, nome, curso);
+                try {
+                    if(alunoDao.salvar(aluno)){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Aluno salvo com sucesso!");
+                    }else{
+                        JOptionPane.showMessageDialog(null,
+                                "Já existe aluno com essa matrícula",
+                                "Mensagem de erro",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (IOException | ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null,
+                            "Falha ao manipular arquivo",
+                            "Mensagem de erro",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
 
+    //TODO: Refatorar esse código...
     private boolean validarFormulario() {
         if(campoMatricula.getText().equals("            ")){
             JOptionPane.showMessageDialog(null,
