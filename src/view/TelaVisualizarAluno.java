@@ -6,6 +6,7 @@ import model.Aluno;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 public class TelaVisualizarAluno extends JDialog {
@@ -28,7 +29,9 @@ public class TelaVisualizarAluno extends JDialog {
         table1 = new JTable(model);
         try {
             alunoDao = new GenericDao<>("alunos.txt");
-            List<Aluno> alunos = alunoDao.getAll().stream().toList();
+            List<Aluno> alunos = alunoDao.getAll().stream()
+                    .sorted(Comparator.comparing(Aluno::getMatricula))
+                    .toList();
             for(Aluno aluno : alunos){
                 model.addRow(new Object[]{aluno.getMatricula(),
                     aluno.getNome(), aluno.getCurso()});
