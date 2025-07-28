@@ -39,7 +39,7 @@ public class TelaPrincipal extends JFrame {
         buttonCancel.addActionListener(e -> System.exit(0));
         buttonOK.addActionListener(e ->{
             if (validarFormulario()){
-                int matricula = Integer.parseInt(campoMatricula.getText());
+                long matricula = Long.parseLong(campoMatricula.getText());
                 String nome = campoNome.getText();
                 String curso = (String) comboCurso.getSelectedItem();
                 Aluno aluno = new Aluno(matricula, nome, curso);
