@@ -5,6 +5,8 @@ import model.Aluno;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -15,6 +17,7 @@ public class TelaPrincipal extends JFrame {
     private JTextField campoNome;
     private JComboBox comboCurso;
     private JFormattedTextField campoMatricula;
+    private JButton listarButton;
     private GenericDao<Aluno> alunoDao;
 
     public TelaPrincipal() {
@@ -61,6 +64,10 @@ public class TelaPrincipal extends JFrame {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
+        });
+        listarButton.addActionListener(e->{
+            TelaVisualizarAluno visualizarAluno = new TelaVisualizarAluno();
+            visualizarAluno.setVisible(true);
         });
     }
 
